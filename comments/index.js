@@ -24,6 +24,7 @@ app.post('/posts/:id/comments', async (req,res) =>{
 
     commentsByPostId[req.params.id] = comments
 
+    // console.log(comments)
     await axios.post('http://localhost:3009/events',{
         type: 'CommentCreated',
         data: {
@@ -52,7 +53,7 @@ app.post('/events', async (req,res) => {
         })
         comment.status = status
 
-        await axios.post('http:localhost:3009',{
+        await axios.post('http://localhost:3009/events',{
             type: 'CommentUpdated',
             data: {
                 id,
@@ -69,5 +70,5 @@ app.post('/events', async (req,res) => {
 })
 
 app.listen(4001, () => {
-    console.log("listening on port 4001, Events Service")
+    console.log("listening on port 4001, Comments Service")
 })
