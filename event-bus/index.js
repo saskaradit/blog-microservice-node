@@ -12,7 +12,7 @@ app.post("/events", (req,res)=>{
     const event = req.body;
     eventLists.push(event)
 
-    axios.post('http://localhost:4000/events', event)
+    axios.post('http://posts-clusterip-srv:4000/events', event)
         .catch((err)=> console.log("4000",err.message))
     axios.post('http://localhost:4001/events', event)
         .catch((err)=> console.log("4001",err.message))
@@ -28,6 +28,6 @@ app.get("/events", (req,res)=>{
     res.send(eventLists)
 })
 
-app.listen(3009, () =>{
-    console.log("listening on port 3009, Event Bus")
+app.listen(4009, () =>{
+    console.log("listening on port 4009, Event Bus")
 })
